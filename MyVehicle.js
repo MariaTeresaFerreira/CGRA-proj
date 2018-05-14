@@ -66,6 +66,8 @@ class MyVehicle extends CGFobject
 	this.scene.popMatrix(); */
 
 	this.scene.pushMatrix();
+		this.scene.translate(0, 1, 0);
+		//this.scene.scale();
 		this.cube.display();
 	this.scene.popMatrix();
 
