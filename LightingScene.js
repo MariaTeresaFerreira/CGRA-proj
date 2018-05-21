@@ -22,7 +22,7 @@ class LightingScene extends CGFscene
 
 		this.initLights();
 
-		//this.enableTextures(true);
+		this.enableTextures(true);
 
 		this.gl.clearColor(0.0, 0.0, 1.0, 0.4);
 		this.gl.clearDepth(100.0);
@@ -63,6 +63,10 @@ class LightingScene extends CGFscene
 		// Materials
 		
 		this.materialDefault = new CGFappearance(this);
+
+		this.grassMaterial = new CGFappearance(this);
+		this.grassMaterial.loadTexture("resources/images/moon.png");
+		this.grassMaterial.setTextureWrap('REPEAT', 'REPEAT');
 
 		/*
 		this.materialA = new CGFappearance(this);
@@ -151,29 +155,29 @@ class LightingScene extends CGFscene
 		this.lights[3].setPosition(4, 6.0, 5.0, 1.0);
 		//this.lights[3].setVisible(true); // show marker on light position (different from enabled)
 
-		this.lights[0].setAmbient(0, 0, 0, 1);
-		this.lights[0].setDiffuse(1.0, 1.0, 0, 1.0);
+		//this.lights[0].setAmbient(0, 0, 0, 1);
+		//this.lights[0].setDiffuse(1.0, 1.0, 0, 1.0);
 		this.lights[0].enable();
 
-		this.lights[1].setAmbient(0, 0, 0, 1);
-		this.lights[1].setDiffuse(1.0, 1.0, 1.0, 1.0);
+		//this.lights[1].setAmbient(0, 0, 0, 1);
+		//this.lights[1].setDiffuse(1.0, 1.0, 1.0, 1.0);
 		this.lights[1].enable();
 
-		this.lights[2].setAmbient(0, 0, 0, 1);
-		this.lights[2].setDiffuse(1.0, 1.0, 1.0, 1.0);
+		//this.lights[2].setAmbient(0, 0, 0, 1);
+		//this.lights[2].setDiffuse(1.0, 1.0, 1.0, 1.0);
 		this.lights[2].enable();
 
-		this.lights[2].setConstantAttenuation(0);
-		this.lights[2].setQuadraticAttenuation(0);
-		this.lights[2].setLinearAttenuation(1);
+		//this.lights[2].setConstantAttenuation(0);
+		//this.lights[2].setQuadraticAttenuation(0);
+		//this.lights[2].setLinearAttenuation(1);
 
-		this.lights[3].setAmbient(0, 0, 0, 1);
-		this.lights[3].setDiffuse(1.0, 1.0, 1.0, 1.0);
+		//this.lights[3].setAmbient(0, 0, 0, 1);
+		//this.lights[3].setDiffuse(1.0, 1.0, 1.0, 1.0);
 		this.lights[3].enable();
 
-		this.lights[3].setConstantAttenuation(0);
-		this.lights[3].setQuadraticAttenuation(1);
-		this.lights[3].setLinearAttenuation(0);
+		//this.lights[3].setConstantAttenuation(0);
+		//this.lights[3].setQuadraticAttenuation(1);
+		//this.lights[3].setLinearAttenuation(0);
 	};
 
 	updateLights() 
@@ -290,6 +294,7 @@ class LightingScene extends CGFscene
 		this.pushMatrix();
 			this.rotate(-90 * degToRad, 1, 0, 0);
 			this.scale(50, 50, 1);
+			this.grassMaterial.apply();
 			this.terrain.display();
 		this.popMatrix();
 
