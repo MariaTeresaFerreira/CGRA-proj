@@ -46,7 +46,18 @@ class LightingScene extends CGFscene
 		this.clock = new MyClock(this);
 		this.circle = new MyCircle(this, 20);*/
 
-		this.cube = new MyVehicle(this); // teste
+		this.altimetry= [[ 2.0 , 3.0 , 2.0, 4.0, 2.5, 2.4, 2.3, 1.3, 0.0 ],
+						 [ 2.0 , 3.0 , 2.0, 4.0, 7.5, 6.4, 4.3, 1.3, 0.0 ],
+						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ],
+						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ],
+						 [ 0.0 , 0.0 , 2.0, 4.0, 2.5, 2.4, 0.0, 0.0, 0.0 ],
+						 [ 0.0 , 0.0 , 2.0, 4.0, 3.5, 2.4, 0.0, 0.0, 0.0 ],
+						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ],
+						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ],
+						 [ 2.0 , 3.0 , 2.0, 1.0, 2.5, 2.4, 2.3, 1.3, 0.0 ]];
+
+		this.vehicle = new MyVehicle(this);
+		this.terrain = new MyTerrain(this, 8, this.altimetry);
 
 
 		// Materials
@@ -272,7 +283,21 @@ class LightingScene extends CGFscene
 		this.popMatrix();
 		*/
 
-		this.cube.display();
+		this.pushMatrix();
+			this.vehicle.display();
+		this.popMatrix();
+
+		this.pushMatrix();
+			this.rotate(-90 * degToRad, 1, 0, 0);
+			this.scale(50, 50, 1);
+			this.terrain.display();
+		this.popMatrix();
+
+		this.pushMatrix();
+		this.popMatrix();
+
+		
+		
 
 		// ---- END Scene drawing section
 	};
