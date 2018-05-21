@@ -31,7 +31,7 @@ class MyVehicle extends CGFobject
     	this.blankAppearance.setSpecular(0.0, 0.0, 0.0, 0.0);
     	this.blankAppearance.setShininess(0); */
 
-    	this.bottom = new MyUnitCubeQuad(scene);
+    	this.body = new MyUnitCubeQuad(scene);
     	this.up = new MyUnitCubeQuad(scene);
 		
 	};
@@ -68,14 +68,19 @@ class MyVehicle extends CGFobject
 
 	this.scene.pushMatrix();
 		this.scene.translate(0, 1, 0);
-		this.scene.scale(2, 1, 1.5);
-		this.bottom.display();
+		this.scene.scale(4.5, 1, 2.5);
+		this.body.display();
 	this.scene.popMatrix();
 
 	this.scene.pushMatrix();
-		this.scene.translate(0, 1.5, 0);
-		this.scene.scale(1, 0.5, 1)
+		this.scene.translate(0, 2, 0);
+		this.scene.scale(2, 1, 2.5)
+		this
 		this.up.display();
+	this.scene.popMatrix();
+
+	this.scene.pushMatrix();
+		
 	this.scene.popMatrix();
 
 
