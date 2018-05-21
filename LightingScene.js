@@ -59,6 +59,7 @@ class LightingScene extends CGFscene
 		this.vehicle = new MyVehicle(this);
 		this.terrain = new MyTerrain(this, 8, this.altimetry);
 
+		
 
 		// Materials
 		
@@ -299,6 +300,7 @@ class LightingScene extends CGFscene
 		this.popMatrix();
 
 		this.pushMatrix();
+			
 		this.popMatrix();
 
 		
