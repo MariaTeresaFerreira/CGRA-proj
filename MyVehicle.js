@@ -33,7 +33,11 @@ class MyVehicle extends CGFobject
 
     	this.body = new MyUnitCubeQuad(scene);
     	this.up = new MyUnitCubeQuad(scene);
-		
+		this.frontCylinder = new MyCylinder(scene, 50, 10);
+
+		this.rHeadlight = new MyCylinder(scene, 50, 10);
+		this.lHeadlight = new MyCylinder(scene, 50, 10);
+
 	};
 	
 	display() {
@@ -66,21 +70,45 @@ class MyVehicle extends CGFobject
 
 	this.scene.popMatrix(); */
 
+
+	//BODY
 	this.scene.pushMatrix();
 		this.scene.translate(0, 1, 0);
 		this.scene.scale(4.5, 1, 2.5);
 		this.body.display();
 	this.scene.popMatrix();
 
+
+	//UP aka HEAD
 	this.scene.pushMatrix();
 		this.scene.translate(0, 2, 0);
-		this.scene.scale(2, 1, 2.5)
-		this
+		this.scene.scale(2, 1, 2.2);
 		this.up.display();
 	this.scene.popMatrix();
 
+	//FRONT CYLINDER
 	this.scene.pushMatrix();
-		
+		this.scene.translate(1.6, 1.8, 0);
+		this.scene.rotate(90 * degToRad, 1, 0, 0);
+		this.scene.scale(0.6, 0.6, 0.4);
+		this.frontCylinder.display();
+	this.scene.popMatrix();
+
+
+	//HEADLIGHTS
+	this.scene.pushMatrix();
+		this.scene.scale(3.2, 0.2, 0.2);
+		this.scene.translate(-0.30, 7.5, 6);
+		this.scene.rotate(90*degToRad, 0, 1, 0);
+		this.rHeadlight.display();
+		this.scene.translate(12, 0, 0);
+		this.lHeadlight.display();
+	this.scene.popMatrix();
+
+	this.scene.pushMatrix();
+	this.scene.popMatrix();
+
+	this.scene.pushMatrix();
 	this.scene.popMatrix();
 
 
