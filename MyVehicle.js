@@ -41,6 +41,8 @@ class MyVehicle extends CGFobject
 		this.rHeadlightLamp = new MySemiSphere(scene, 50, 10);
 		this.lHeadlightLamp = new MyCircle(scene, 50);
 
+		this.carHook = new MyCarHook(scene);
+
 		//this.frontRightWheel = new
 
 	};
@@ -117,6 +119,10 @@ class MyVehicle extends CGFobject
 
 
 	this.scene.pushMatrix();
+		this.scene.translate(-2.4, 3, 0);
+		this.scene.scale(0.35, 0.35, 0.35);
+		this.scene.rotate(-90 * degToRad, 0, 1, 0);
+		this.carHook.display();
 	this.scene.popMatrix();
 
 	this.scene.pushMatrix();

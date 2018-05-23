@@ -20,6 +20,7 @@ serialInclude([
 	'MyTrapezium.js', 
 	'MySemiSphere.js', 
 	'MyRadiator.js', 
+	'MyCarHook.js', 
 
 	main=function() {
 		var app = new CGFapplication(document.body);
