@@ -33,10 +33,15 @@ class MyVehicle extends CGFobject
 
     	this.body = new MyUnitCubeQuad(scene);
     	this.up = new MyUnitCubeQuad(scene);
-		this.frontCylinder = new MyCylinder(scene, 50, 10);
+		this.frontCylinder = new MyRadiator(scene);
 
 		this.rHeadlight = new MyCylinder(scene, 50, 10);
 		this.lHeadlight = new MyCylinder(scene, 50, 10);
+
+		this.rHeadlightLamp = new MySemiSphere(scene, 50, 10);
+		this.lHeadlightLamp = new MyCircle(scene, 50);
+
+		//this.frontRightWheel = new
 
 	};
 	
@@ -86,19 +91,13 @@ class MyVehicle extends CGFobject
 		this.up.display();
 	this.scene.popMatrix();
 
-	//FRONT CYLINDER
-	this.scene.pushMatrix();
-		this.scene.translate(1.6, 1.8, 0);
-		this.scene.rotate(90 * degToRad, 1, 0, 0);
-		this.scene.scale(0.6, 0.6, 0.4);
-		this.frontCylinder.display();
-	this.scene.popMatrix();
+	
 
 
 	//HEADLIGHTS
 	this.scene.pushMatrix();
-		this.scene.scale(3.2, 0.2, 0.2);
-		this.scene.translate(-0.30, 7.5, 6);
+		this.scene.scale(3.4, 0.2, 0.2);
+		this.scene.translate(-0.295, 7.5, 6);
 		this.scene.rotate(90*degToRad, 0, 1, 0);
 		this.rHeadlight.display();
 		this.scene.translate(12, 0, 0);
@@ -106,9 +105,41 @@ class MyVehicle extends CGFobject
 	this.scene.popMatrix();
 
 	this.scene.pushMatrix();
+		this.scene.scale(0.2, 0.2, 0.2);
+		this.scene.translate(11.9, 7.5, 6);
+		this.scene.rotate(90*degToRad, 0, 1, 0);
+		this.rHeadlightLamp.display();
+		this.scene.translate(12, 0, 0);
+		this.lHeadlightLamp.display();
+	this.scene.popMatrix();
+
+
+
+
+	this.scene.pushMatrix();
 	this.scene.popMatrix();
 
 	this.scene.pushMatrix();
+	this.scene.popMatrix();
+
+	this.scene.pushMatrix();
+	this.scene.popMatrix();
+
+	this.scene.pushMatrix();
+	this.scene.popMatrix();
+
+	this.scene.pushMatrix();
+	this.scene.popMatrix();
+
+	this.scene.pushMatrix();
+	this.scene.popMatrix();
+
+	//FRONT CYLINDER
+	this.scene.pushMatrix();
+		this.scene.translate(1.6, 1.5, 0);
+		this.scene.rotate(270 * degToRad, 1, 0, 0);
+		this.scene.scale(0.6, 0.6, 0.4);
+		this.frontCylinder.display();
 	this.scene.popMatrix();
 
 

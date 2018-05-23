@@ -19,7 +19,7 @@ class MyRadiator extends CGFobject
     	this.radiatorAppearance.setDiffuse(0.9, 0.9, 0.9, 0.5);
     	this.radiatorAppearance.setSpecular(0.1, 0.1, 0.1, 0.5);
     	this.radiatorAppearance.setShininess(20);
-    	this.radiatorAppearance.loadTexture("../resources/images/radiator.png");
+    	this.radiatorAppearance.loadTexture("resources/images/radiator.png");
 
 
  		this.rust1Appearance = new CGFappearance(this.scene);
@@ -27,7 +27,7 @@ class MyRadiator extends CGFobject
     	this.rust1Appearance.setDiffuse(0.9, 0.9, 0.9, 0.5);
     	this.rust1Appearance.setSpecular(0.1, 0.1, 0.1, 0.5);
     	this.rust1Appearance.setShininess(20);
-    	this.rust1Appearance.loadTexture("../resources/images/rust1.png");
+    	this.rust1Appearance.loadTexture("resources/images/rust1.png");
 
 	    this.blankAppearance = new CGFappearance(this.scene);
    		this.blankAppearance.setAmbient(0.0, 0.0, 0.0, 0.0);

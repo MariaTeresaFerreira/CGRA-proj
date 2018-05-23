@@ -19,7 +19,7 @@ class MyWheel extends CGFobject
     	this.rimAppearance.setDiffuse(0.9, 0.9, 0.9, 0.5);
     	this.rimAppearance.setSpecular(0.1, 0.1, 0.1, 0.5);
     	this.rimAppearance.setShininess(20);
-    	this.rimAppearance.loadTexture("../resources/images/rims.png");
+    	this.rimAppearance.loadTexture("resources/images/rims.png");
 
 
  		this.wheelAppearance = new CGFappearance(this.scene);
@@ -27,7 +27,7 @@ class MyWheel extends CGFobject
     	this.wheelAppearance.setDiffuse(0.9, 0.9, 0.9, 0.5);
     	this.wheelAppearance.setSpecular(0.1, 0.1, 0.1, 0.5);
     	this.wheelAppearance.setShininess(20);
-    	this.wheelAppearance.loadTexture("../resources/images/wheel.png");
+    	this.wheelAppearance.loadTexture("resources/images/wheel.png");
 
 
 
