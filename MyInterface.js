@@ -48,6 +48,8 @@ class MyInterface extends CGFinterface {
 
 		this.gui.add(this.scene, 'speed', -5, 5);
 
+		initKeys();
+
 		return true;
 	};
 
@@ -55,6 +57,7 @@ class MyInterface extends CGFinterface {
 	 * processKeyboard
 	 * @param event {Event}
 	 */
+	 /*
 	processKeyboard(event) {
 		// call CGFinterface default code (omit if you want to override)
 		super.processKeyboard(event);
@@ -68,6 +71,20 @@ class MyInterface extends CGFinterface {
 			case (65):	// only works for capital 'A', as it is
 				console.log("Key 'A' pressed");
 		};
+	};*/
+
+	initKeys() {
+		this.scene.gui=this; this.processKeyboard=function(){}; this.activeKeys={};
+	}
+	processKeyDown(event) {
+		this.activeKeys[event.code]=true; 
 	};
+	processKeyUp(event) { 
+		this.activeKeys[event.code]=false;
+	};
+	isKeyPressed(keyCode) {
+		return this.activeKeys[keyCode] || false;
+	}
+
 };
 

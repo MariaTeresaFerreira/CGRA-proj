@@ -43,6 +43,8 @@ class MyVehicle extends CGFobject
 
 		this.carHook = new MyCarHook(scene);
 
+		this.wheel = new MyWheel(scene);
+
 		//this.frontRightWheel = new
 
 	};
@@ -77,7 +79,7 @@ class MyVehicle extends CGFobject
 
 	this.scene.popMatrix(); */
 
-
+	this.scene.scale(0.7, 0.7, 0.7);
 	//BODY
 	this.scene.pushMatrix();
 		this.scene.translate(0, 1, 0);
@@ -125,7 +127,18 @@ class MyVehicle extends CGFobject
 		this.carHook.display();
 	this.scene.popMatrix();
 
+
+	//WHEELS
 	this.scene.pushMatrix();
+		this.scene.scale(0.6, 0.6, 0.6);
+		this.scene.translate(2.5, 0.7, 1.8);
+		this.wheel.display();
+		this.scene.translate(0, 0, -4);
+		this.wheel.display();
+		this.scene.translate(-5, 0, 0);
+		this.wheel.display();
+		this.scene.translate(0, 0, 4);
+		this.wheel.display();
 	this.scene.popMatrix();
 
 	this.scene.pushMatrix();
@@ -148,6 +161,11 @@ class MyVehicle extends CGFobject
 		this.frontCylinder.display();
 	this.scene.popMatrix();
 
+
+	this.rustMaterial = new CGFappearance(this);
+	this.rustMaterial.loadTexture("resources/images/rust1.png");
+
+	
 
 
 	};
