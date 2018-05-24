@@ -247,26 +247,26 @@ class LightingScene extends CGFscene
 			this.clock.display();
 		this.popMatrix();
 		*/
-		this.rustMaterial.apply();
+		
 		this.pushMatrix();
+			//this.rustMaterial.apply();
 			this.vehicle.display();
 		this.popMatrix();
-
-		//this.pushMatrix();
-		//	this.rotate(-90 * degToRad, 1, 0, 0);
-		//	this.scale(50, 50, 1);
-		//	this.grassMaterial.apply();
-		//	this.terrain.display();
-		//this.popMatrix();
+/*
+		this.pushMatrix();
+			this.rotate(-90 * degToRad, 1, 0, 0);
+			this.scale(50, 50, 1);
+			this.grassMaterial.apply();
+			this.terrain.display();
+		this.popMatrix();
 
 		this.pushMatrix();
 			this.materialDefault.apply();
 			this.scale(5, 2, 2.5);
 			this.translate(0, 0.45, 0);
-			//this.dimension.display();
-			
+			this.dimension.display();	
 		this.popMatrix();
-
+*/
 		
 		
 

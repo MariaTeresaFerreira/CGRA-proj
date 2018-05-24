@@ -21,7 +21,7 @@ class MyClock extends CGFobject
     	this.clockAppearance.setDiffuse(0.9, 0.9, 0.9, 0.5);
     	this.clockAppearance.setSpecular(0.1, 0.1, 0.1, 0.5);
     	this.clockAppearance.setShininess(20);
-    	this.clockAppearance.loadTexture("../resources/images/clock.png");
+    	this.clockAppearance.loadTexture("resources/images/clock.png");
 
 	    this.blankAppearance = new CGFappearance(this.scene);
    		this.blankAppearance.setAmbient(0.0, 0.0, 0.0, 0.0);
