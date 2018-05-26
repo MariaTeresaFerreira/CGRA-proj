@@ -6,7 +6,7 @@ class MyInterface extends CGFinterface {
 	 * MyInterface
 	 * @constructor
 	 */
- 	constructor () {
+ 	constructor(){
  		super();
  	}
 	
@@ -48,7 +48,7 @@ class MyInterface extends CGFinterface {
 
 		this.gui.add(this.scene, 'speed', -5, 5);
 
-		initKeys();
+		this.initKeys();
 
 		return true;
 	};
@@ -74,8 +74,10 @@ class MyInterface extends CGFinterface {
 	};*/
 
 	initKeys() {
-		this.scene.gui=this; this.processKeyboard=function(){}; this.activeKeys={};
-	}
+		this.scene.gui=this; 
+		this.processKeyboard=function(){}; 
+		this.activeKeys={};
+	};
 	processKeyDown(event) {
 		this.activeKeys[event.code]=true; 
 	};
@@ -84,7 +86,7 @@ class MyInterface extends CGFinterface {
 	};
 	isKeyPressed(keyCode) {
 		return this.activeKeys[keyCode] || false;
-	}
+	};
 
 };
 

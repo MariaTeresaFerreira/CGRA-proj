@@ -17,6 +17,10 @@ class LightingScene extends CGFscene
 	init(application) 
 	{
 		super.init(application);
+		this.doSomething = false;
+		this.option1 = false;
+		this.option2 = false;
+		this.speed = false;
 
 		this.initCameras();
 
@@ -44,7 +48,7 @@ class LightingScene extends CGFscene
 						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ],
 						 [ 2.0 , 3.0 , 2.0, 1.0, 2.5, 2.4, 2.3, 1.3, 0.0 ]];
 
-		this.vehicle = new MyVehicleBody(this);
+		this.vehicle = new MyVehicle(this);
 		this.terrain = new MyTerrain(this, 8, this.altimetry);
 
 		this.dimension = new MyUnitCubeQuad(this);
@@ -176,21 +180,20 @@ class LightingScene extends CGFscene
 	};
 
 	
-	update()
+	update(currTime)
 	{
-/*
+
 	this.lastTime = this.lastTime || 0;
 	this.deltaTime = currTime - this.lastTime;
 	this.lastTime = currTime;
-	this.clock.update(this.deltaTime);
-*/
 
-
-	checkKeys();
+	//this.vehicle.update(this.deltaTime);
+	this.checkKeys();
 	};
 	
 	checkKeys() {
-		var text="Keys pressed: "; var keysPressed=false;
+		var text="Keys pressed: "; 
+		var keysPressed=false;
 		if (this.gui.isKeyPressed("KeyW")) {
 			text+=" W ";
 			keysPressed=true;
@@ -199,18 +202,11 @@ class LightingScene extends CGFscene
 				text+=" S ";
 				keysPressed=true;
 		}
-		if (keysPressed) console.log(text);
-	}
-
-	update(currTime)
-	{
-
-	this.lastTime = this.lastTime || 0;
-	this.deltaTime = currTime - this.lastTime;
-	this.lastTime = currTime;
-	//this.vehicle.update(this.deltaTime);
-
+		if (keysPressed) 
+			console.log(text);
 	};
+
+	
 
 
 
