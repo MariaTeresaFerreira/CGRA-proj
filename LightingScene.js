@@ -33,18 +33,6 @@ class LightingScene extends CGFscene
 		this.axis = new CGFaxis(this);
 
 		// Scene elements
-		/*
-		this.table = new MyTable(this);
-		this.wallR = new Plane(this);
-		this.wallL = new MyQuad(this, -0.6, 1.55, -0.6, 1.55);
-		this.floor = new MyQuad(this, 0, 12, 0, 10);
-		
-		this.boardA = new Plane(this, BOARD_A_DIVISIONS, -0.2,1.2,0,1);
-		this.boardB = new Plane(this, BOARD_B_DIVISIONS,);
-
-		this.column = new MyCylinder(this, 10, 2);
-		this.clock = new MyClock(this);
-		this.circle = new MyCircle(this, 20);*/
 
 		this.altimetry= [[ 2.0 , 3.0 , 2.0, 4.0, 2.5, 2.4, 2.3, 1.3, 0.0 ],
 						 [ 2.0 , 3.0 , 2.0, 4.0, 7.5, 6.4, 4.3, 1.3, 0.0 ],
@@ -56,7 +44,7 @@ class LightingScene extends CGFscene
 						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ],
 						 [ 2.0 , 3.0 , 2.0, 1.0, 2.5, 2.4, 2.3, 1.3, 0.0 ]];
 
-		this.vehicle = new MyVehicle(this);
+		this.vehicle = new MyVehicleBody(this);
 		this.terrain = new MyTerrain(this, 8, this.altimetry);
 
 		this.dimension = new MyUnitCubeQuad(this);
@@ -70,22 +58,9 @@ class LightingScene extends CGFscene
 		this.grassMaterial = new CGFappearance(this);
 		this.grassMaterial.loadTexture("resources/images/moon.png");
 		this.grassMaterial.setTextureWrap('REPEAT', 'REPEAT');
-
-
-
 		
+		this.setUpdatePeriod(10);
 		
-		/*
-		this.materialA = new CGFappearance(this);
-		this.materialA.loadTexture("../resources/images/table.png");
-		this.materialA.setAmbient(0.1,0.1,0.1,1);
-		this.materialA.setDiffuse(0.9,0.9,0.9,1);
-		this.materialA.setSpecular(0.1,0.1,0.1,1);
-		this.materialA.setShininess(100);
-
-		
-		this.setUpdatePeriod(100);
-		*/
 
 	};
 
@@ -175,83 +150,11 @@ class LightingScene extends CGFscene
 
 		// ---- BEGIN Scene drawing section
 
-
-		/*
-		// Floor
-		this.pushMatrix();
-			this.translate(7.5, 0, 7.5);
-			this.rotate(-90 * degToRad, 1, 0, 0);
-			this.scale(15, 15, 0.2);
-			this.floorAppearence.apply();
-			this.floor.display();
-		this.popMatrix();
-
-		// Left Wall
-		this.pushMatrix();
-			this.translate(0, 4, 7.5);
-			this.rotate(90 * degToRad, 0, 1, 0);
-			this.scale(15, 8, 0.2);
-			this.windowAppearence.apply();
-			this.wallL.display();
-		this.popMatrix();
-
-		// Plane Wall
-		this.pushMatrix();
-			this.translate(7.5, 4, 0);
-			this.scale(15, 8, 0.2);
-			this.materialB.apply();
-			this.wallR.display();
-		this.popMatrix();
-
-		// First Table
-		this.pushMatrix();
-			this.translate(5, 0, 8);
-			this.materialA.apply();
-			this.table.display();
-		this.popMatrix();
-
-		// Second Table
-		this.pushMatrix();
-			this.translate(12, 0, 8);
-			this.table.display();
-		this.popMatrix();
-
-		// Board A
-		this.pushMatrix();
-			this.translate(4, 4.5, 0.2);
-			this.scale(BOARD_WIDTH, BOARD_HEIGHT, 1);
-			this.slidesAppearence.apply();
-			this.boardA.display();
-		this.popMatrix();
-
-		// Board B
-		this.pushMatrix();
-			this.translate(10.5, 4.5, 0.2);
-			this.scale(BOARD_WIDTH, BOARD_HEIGHT, 1);
-			
-			this.boardAppearence.apply();
-			this.boardB.display();
-		this.popMatrix();
-
-		//Column
-		this.pushMatrix();
-			this.translate(1,8,14);
-			this.rotate(90 * degToRad,1,0,0);
-			this.scale(1,1,8);
-			this.boardAppearence.apply();
-			//this.column.display();
-		this.popMatrix();
-
-		this.pushMatrix();
-			this.translate(7,7,0);
-			this.clock.display();
-		this.popMatrix();
-		*/
 		
 		this.pushMatrix();
-			//this.rustMaterial.apply();
 			this.vehicle.display();
 		this.popMatrix();
+		
 /*
 		this.pushMatrix();
 			this.rotate(-90 * degToRad, 1, 0, 0);
@@ -299,6 +202,16 @@ class LightingScene extends CGFscene
 		}
 		if (keysPressed) console.log(text);
 	}
+
+	update(currTime)
+	{
+
+	this.lastTime = this.lastTime || 0;
+	this.deltaTime = currTime - this.lastTime;
+	this.lastTime = currTime;
+	//this.vehicle.update(this.deltaTime);
+
+	};
 
 
 
