@@ -49,7 +49,6 @@ class LightingScene extends CGFscene
 
 		this.dimension = new MyUnitCubeQuad(this);
 
-		
 
 		// Materials
 		
