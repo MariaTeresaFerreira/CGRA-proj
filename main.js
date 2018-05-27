@@ -23,6 +23,9 @@ serialInclude([
 	'MyRadiator.js', 
 	'MyCarHook.js', 
 	'MyWheel.js', 
+	'MyCompleteCylinder.js', 
+	'MyCrane.js', 
+	'MyMagnet.js',
 	
 	
 	main=function() {

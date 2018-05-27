@@ -17,10 +17,11 @@ class LightingScene extends CGFscene
 	init(application) 
 	{
 		super.init(application);
-		this.doSomething = false;
-		this.option1 = false;
-		this.option2 = false;
-		this.speed = false;
+		//this.doSomething = false;
+		this.luz1 = true;
+		this.luz2 = true;
+		//this.speed = false;
+		this.displayAxis = false;
 
 		this.initCameras();
 
@@ -42,14 +43,16 @@ class LightingScene extends CGFscene
 						 [ 2.0 , 3.0 , 2.0, 4.0, 7.5, 6.4, 4.3, 1.3, 0.0 ],
 						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ],
 						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ],
-						 [ 0.0 , 0.0 , 2.0, 4.0, 2.5, 2.4, 0.0, 0.0, 0.0 ],
-						 [ 0.0 , 0.0 , 2.0, 4.0, 3.5, 2.4, 0.0, 0.0, 0.0 ],
-						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ],
+						 [ 0.0 , 0.0 , 1.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0 ],
+						 [ 1.0 , 0.0 , 2.0, 0.0, 0.0, 0.4, 0.0, 0.0, 0.0 ],
+						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 2.0, 0.0, 0.0 ],
 						 [ 0.0 , 0.0 , 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ],
 						 [ 2.0 , 3.0 , 2.0, 1.0, 2.5, 2.4, 2.3, 1.3, 0.0 ]];
 
 		this.vehicle = new MyVehicle(this);
 		this.terrain = new MyTerrain(this, 8, this.altimetry);
+		this.crane = new MyCrane(this);
+		this.magnet = new MyMagnet(this);
 
 		this.dimension = new MyUnitCubeQuad(this);
 
@@ -59,7 +62,7 @@ class LightingScene extends CGFscene
 		this.materialDefault = new CGFappearance(this);
 
 		this.grassMaterial = new CGFappearance(this);
-		this.grassMaterial.loadTexture("resources/images/moon.png");
+		this.grassMaterial.loadTexture("resources/images/grass.png");
 		this.grassMaterial.setTextureWrap('REPEAT', 'REPEAT');
 		
 		this.setUpdatePeriod(10);
@@ -123,6 +126,13 @@ class LightingScene extends CGFscene
 	{
 		for (var i = 0; i < this.lights.length; i++)
 			this.lights[i].update();
+
+		if (this.luz1) this.lights[0].enable();
+		else this.lights[0].disable();
+
+		if (this.luz2) this.lights[1].enable();
+		else this.lights[1].disable();
+
 	}
 
 
@@ -145,7 +155,7 @@ class LightingScene extends CGFscene
 		this.updateLights();
 
 		// Draw axis
-		this.axis.display();
+		if(this.displayAxis) this.axis.display();
 
 		this.materialDefault.apply();
 
@@ -155,10 +165,11 @@ class LightingScene extends CGFscene
 
 		
 		this.pushMatrix();
+			this.translate(0, 0, -8);
 			this.vehicle.display();
 		this.popMatrix();
 		
-/*
+
 		this.pushMatrix();
 			this.rotate(-90 * degToRad, 1, 0, 0);
 			this.scale(50, 50, 1);
@@ -166,13 +177,14 @@ class LightingScene extends CGFscene
 			this.terrain.display();
 		this.popMatrix();
 
+		this.materialDefault.apply();
+
 		this.pushMatrix();
-			this.materialDefault.apply();
-			this.scale(5, 2, 2.5);
-			this.translate(0, 0.45, 0);
-			this.dimension.display();	
+			this.crane.display();
 		this.popMatrix();
-*/
+
+		
+
 		
 		
 
@@ -189,6 +201,7 @@ class LightingScene extends CGFscene
 
 	//this.vehicle.update(this.deltaTime);
 	this.checkKeys();
+	this.crane.update(this.deltaTime);
 	};
 	
 	checkKeys() {
