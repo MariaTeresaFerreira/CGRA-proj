@@ -1,5 +1,5 @@
 /*/***
- * MyVehicle
+ * MyVehicleBody
  * @constructor
  */
 var degToRad = Math.PI / 180.0;
@@ -9,6 +9,22 @@ class MyVehicle extends CGFobject
 	constructor(scene)
 	{
 		super(scene);
+
+		this.x = 0;
+		this.y = 0;
+		this.z = 0;
+
+		this.back = 0;
+		this.left = 0;
+		this.rigth = 0;
+
+		this.velocity = 0;
+		this.acelaration = 0;
+		
+		this.wheelAngle = 0;
+		this.bodyAngle = 0;
+		this.rotateVelocity = 0;		
+
 
  		this.eyesAppearance = new CGFappearance(this.scene);
     	this.eyesAppearance.setAmbient(0.5, 0.5, 0.5, 0.5);
@@ -53,7 +69,7 @@ class MyVehicle extends CGFobject
     	this.rustAppearance.loadTexture("resources/images/rust2.png");
 
 
-
+		//car components
     	this.body = new MyUnitCubeQuad(scene);
     	this.up = new MyUnitCubeQuad(scene);
 		this.radiator = new MyRadiator(scene);
@@ -81,8 +97,11 @@ class MyVehicle extends CGFobject
 	};
 	
 	display() {
-
+	
+	this.scene.translate(this.x, this.y, this.z);
+	this.scene.rotate(this.bodyAngle * degToRad, 0,1,0);
 	this.scene.scale(0.7, 0.7, 0.7);
+	
 	//BODY
 	this.scene.pushMatrix();
 		this.scene.translate(0, 1, 0);
@@ -90,7 +109,6 @@ class MyVehicle extends CGFobject
 		this.rustAppearance.apply();
 		this.body.display();
 	this.scene.popMatrix();
-
 
 	//UP aka HEAD
 	this.scene.pushMatrix();
@@ -131,7 +149,7 @@ class MyVehicle extends CGFobject
 		this.lHeadlightLamp.display();
 	this.scene.popMatrix();
 
-		//car lights
+/*		//car lights
 	this.scene.pushMatrix();
 		this.scene.scale(0.2, 0.2, 0.2);
 		this.scene.translate(11.9, 7.5, 6);
@@ -142,41 +160,13 @@ class MyVehicle extends CGFobject
 		this.scene.translate(12, 0, 0);
 		this.lHeadlightLamp.display();
 	this.scene.popMatrix();
-
+*/
 	// car hook 
 	this.scene.pushMatrix();
 		this.scene.translate(-1.6, 2.4, 0);
 		this.scene.scale(0.2, 0.2, 0.5);
 		this.scene.rotate(-90 * degToRad, 0, 1, 0);
 		this.carHook.display();
-	this.scene.popMatrix();
-
-	// front left wheel
-	this.scene.pushMatrix();
-		this.scene.scale(0.6, 0.6, 0.6);
-		this.scene.translate(2.5, 0.7, 1.8);
-		this.wheel1.display();
-	this.scene.popMatrix();
-
-	// front rigth wheel
-	this.scene.pushMatrix();
-		this.scene.scale(0.6, 0.6, 0.6);
-		this.scene.translate(2.5, 0.7, -2.3);
-		this.wheel2.display();
-	this.scene.popMatrix();
-
-	// back left wheel
-	this.scene.pushMatrix();
-		this.scene.scale(0.6, 0.6, 0.6);
-		this.scene.translate(-2.5, 0.7, 1.8);
-		this.wheel2.display();
-	this.scene.popMatrix();
-
-	// back rigth wheel
-	this.scene.pushMatrix();
-		this.scene.scale(0.6, 0.6, 0.6);
-		this.scene.translate(-2.5, 0.7, -2.3);
-		this.wheel4.display();
 	this.scene.popMatrix();
 
 	// car radiator
@@ -221,25 +211,128 @@ class MyVehicle extends CGFobject
 		this.window2Appearance.apply();
 		this.windowL.display();
 	this.scene.popMatrix();
-	
+
+	// back left wheel
 	this.scene.pushMatrix();
+		this.scene.scale(0.6, 0.6, 0.6);
+		this.scene.translate(-2.5, 0.7, 1.8);
+		this.wheel3.display();
 	this.scene.popMatrix();
 
+	// back rigth wheel
 	this.scene.pushMatrix();
+		this.scene.scale(0.6, 0.6, 0.6);
+		this.scene.translate(-2.5, 0.7, -2.3);
+		this.wheel4.display();
+	this.scene.popMatrix();
+
+	this.scene.rotate(this.wheelAngle * degToRad, 0,0,1);
+	
+	// front left wheel
+	this.scene.pushMatrix();
+		this.scene.scale(0.6, 0.6, 0.6);
+		this.scene.translate(2.5, 0.7, 1.8);
+		this.wheel1.display();
+	this.scene.popMatrix();
+
+	// front rigth wheel
+	this.scene.pushMatrix();
+		this.scene.scale(0.6, 0.6, 0.6);
+		this.scene.translate(2.5, 0.7, -2.3);
+		this.wheel2.display();
 	this.scene.popMatrix();
 	};
-		
-		
- 	update(currTime){
- 		
+
+	//sets
+	setWheelAng(angle){
+		if(this.wheelAngle >= 45)
+		{
+			this.wheelAngle = angle;
+		}
+		else{
+			this.wheelAngle = angle;
+		}
+	};	
+
+	setBodyAng(angle){
+		if(this.bodyAngle >= 360)
+		{
+			this.bodyAngle = angle;
+		}
+		else{
+			this.bodyAngle = angle;
+		}
 	};
- 	
+
+	setVelocity(vel){
+		if(this.velocity >= 10)
+		{
+			this.velocity = 10;
+		}
+		else{
+			this.velocity = this.velocity + vel;
+		}
+	};
+
+	setAcelaration(ace){
+		if(this.acelaration >= 5)
+		{
+			this.acelaration = 5;
+		}
+		else{
+			this.acelaration = this.acelaration + ace;
+		}
+	};
+
+	setRotateVelocity(vel){
+		if(this.acelaration >= 10)
+		{
+			this.rotateVelocity = 10;
+		}
+		else{
+			this.rotateVelocity = this.rotateVelocity + vel;
+		}
+	};
+
+	setX(x){
+		this.x = x;
+	}
+
+	setY(y){
+		this.y = y;
+	};
+
+	setZ(z){
+		this.z = z;
+	};
+
+	updateCoordinates(deltaTime){
+
+		this.velocity = this.acelaration;
+		this.setWheelAng(this.bodyAngle + this.rotateVelocity);
+		this.setBodyAng( (this.bodyAngle + this.rotateVelocity) * 2);
+
+		if(this.velocity < 0){
+			this.back = 1;
+		}
+		else{
+			this.back = 0;
+		}
+
+		if(this.acelaration != 0){
+			this.z = this.z + Math.sin(this.wheelAngle * degToRad * this.velocity);
+			this.x = this.x + Math.cos(this.wheelAngle * degToRad * this.velocity);
+		}
+		//this.wheel1.update(deltaTime, this.left, this.rigth, this.back, this.velocity, this.rotateVelocity); 	
+		//this.wheel2.update(deltaTime, this.left, this.rigth, this.back, this.velocity, this.rotateVelocity);
+	};
+
  };
  
 
 
 
- 
+ 	
 
 
 

@@ -194,12 +194,13 @@ class LightingScene extends CGFscene
 	
 	update(currTime)
 	{
-
+		
 	this.lastTime = this.lastTime || 0;
 	this.deltaTime = currTime - this.lastTime;
 	this.lastTime = currTime;
 
-	//this.vehicle.update(this.deltaTime);
+	this.vehicle.updateCoordinates();	
+	
 	this.checkKeys();
 	this.crane.update(this.deltaTime);
 	};
@@ -207,14 +208,30 @@ class LightingScene extends CGFscene
 	checkKeys() {
 		var text="Keys pressed: "; 
 		var keysPressed=false;
+
 		if (this.gui.isKeyPressed("KeyW")) {
-			text+=" W ";
-			keysPressed=true;
+			text += " W ";
+			keysPressed = true;
+			this.vehicle.setAcelaration(1);
 		}
+
 		if (this.gui.isKeyPressed("KeyS")) {
-				text+=" S ";
-				keysPressed=true;
+			text+=" S ";
+			keysPressed=true;
+			this.vehicle.setAcelaration(-1);
 		}
+		if (this.gui.isKeyPressed("KeyA")) {
+			text += " A ";
+			keysPressed = true;
+			this.vehicle.setRotateVelocity(-1);
+		}
+
+		if (this.gui.isKeyPressed("KeyD")) {
+			text+=" D ";
+			keysPressed=true;
+			this.vehicle.setRotateVelocity(-1);
+		}
+
 		if (keysPressed) 
 			console.log(text);
 	};
